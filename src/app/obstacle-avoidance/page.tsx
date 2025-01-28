@@ -33,6 +33,8 @@ export default function Home() {
   const [lidarData, setLidarData] = useState<LidarData | null>(null);
   const [detectionFrame, setDetectionFrame] = useState<string | null>(null);
   const [isLidarActive, setIsLidarActive] = useState<boolean | null>(null);
+  const [isMotorStopped, setIsMotorStopped] = useState(false); 
+  const [isCameraStopped, setIsCameraStopped] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const peerRef = useRef<RTCPeerConnection | null>(null);
 
@@ -141,6 +143,16 @@ export default function Home() {
     };
   }, []);
 
+  const toggleMotor = () => {
+    setIsMotorStopped(prevState => !prevState);
+    // Add logic to start/stop the motor
+  };
+
+  const toggleCamera = () => {
+    setIsCameraStopped(prevState => !prevState);
+    // Add logic to start/stop the camera
+  };
+
   return (
     <>
       <Header />
@@ -190,21 +202,17 @@ export default function Home() {
                 Obstacle Avoidance Controls
               </h2>
               <div className="flex justify-around p-4">
-                <button
-                  className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
-                  onClick={() => {
-                    
-                  }}
+              <button
+                  className={`px-6 py-2 ${isMotorStopped ? 'bg-green-500' : 'bg-red-500'} text-white rounded-lg hover:${isMotorStopped ? 'bg-green-600' : 'bg-red-600'} transition-colors`}
+                  onClick={toggleMotor}
                 >
-                  Stop Motor
+                  {isMotorStopped ? 'Start Motor' : 'Stop Motor'}
                 </button>
                 <button
-                  className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
-                  onClick={() => {
-                    // Add logic to stop the camera
-                  }}
+                  className={`px-6 py-2 ${isCameraStopped ? 'bg-green-500' : 'bg-blue-500'} text-white rounded-lg hover:${isCameraStopped ? 'bg-green-600' : 'bg-blue-600'} transition-colors`}
+                  onClick={toggleCamera}
                 >
-                  Stop Camera
+                  {isCameraStopped ? 'Start Camera' : 'Stop Camera'}
                 </button>
               </div>
             </Card>

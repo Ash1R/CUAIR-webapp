@@ -65,6 +65,15 @@ export class WebSocketClient {
     onMessage(handler: (message: WebSocketMessage) => void) {
         this.messageHandler = handler;
     }
+
+    // implement later to send message to lidar?
+    send(message: WebSocketMessage) {
+        if (this.ws?.readyState === WebSocket.OPEN) {
+            this.ws.send(JSON.stringify(message));
+        } else {
+            console.error('WebSocket: Connection is not open');
+        }
+    }
 }
 
 // Single instance for the application
