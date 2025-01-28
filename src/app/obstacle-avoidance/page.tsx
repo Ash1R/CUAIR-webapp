@@ -146,20 +146,8 @@ export default function Home() {
       <Header />
       <main className={`bg-background ${styles.container}`}>
         <div className={styles.wrapper}>
-          <h1 className={`text-foreground text-center ${styles.title}`}>Intsys Obstacle Avoidance</h1>
-          
-          {/* LiDAR toggle button */}
-          <div className="flex justify-center mb-4">
-            <Button
-              onClick={toggleLidar}
-              variant={isLidarActive === null ? "outline" : "default"}
-              className={isLidarActive === null ? "" : 
-                `${isLidarActive ? 'bg-red-700 hover:bg-red-800' : 'bg-green-600 hover:bg-green-700'} text-white`}
-            >
-              {isLidarActive === null ? 'Loading...' : isLidarActive ? 'Stop LiDAR' : 'Start LiDAR'}
-            </Button>
-          </div>
-
+          <h1 className={`text-foreground text-center ${styles.title}`}>CUAIR Obstacle Avoidance</h1>
+         
           <div className="flex flex-row gap-4" style={{ minHeight: '700px' }}>
             <Card className={`bg-card border-border ${styles.card}`} style={{ width: '700px' }}>
               <div className={styles.cardContent}>
@@ -168,7 +156,7 @@ export default function Home() {
                 </div>
               </div>
             </Card>
-
+           
             <Card className={`bg-card border-border p-4 ${styles.card}`} style={{ width: '500px' }}>
               <h2 className="text-xl font-bold text-card-foreground mb-4">Detected Obstacles</h2>
               <div className="flex flex-col gap-3">
@@ -196,8 +184,33 @@ export default function Home() {
               </div>
             </Card>
           </div>
-          
-          <div className="mt-8 flex flex-col gap-4">
+          <div className="mt-8">
+            <Card className={`bg-card border-border ${styles.card}`} style={{ width: '1200px' }}>
+              <h2 className="text-2xl font-bold text-card-foreground text-center mt-6 mb-4">
+                Obstacle Avoidance Controls
+              </h2>
+              <div className="flex justify-around p-4">
+                <button
+                  className="px-6 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors"
+                  onClick={() => {
+                    
+                  }}
+                >
+                  Stop Motor
+                </button>
+                <button
+                  className="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                  onClick={() => {
+                    // Add logic to stop the camera
+                  }}
+                >
+                  Stop Camera
+                </button>
+              </div>
+            </Card>
+          </div>
+         
+          <div className="mt-8">
             <Card className={`bg-card border-border p-4 ${styles.card}`}>
               <h2 className="text-xl font-bold text-card-foreground mb-4">Detection Frame Feed</h2>
               <div className="aspect-video w-full bg-black rounded-lg overflow-hidden">
